@@ -29,14 +29,28 @@ import json
 
 
 
-#Loading Data
+##Loading Data
 
-# Read the CSV file into a DataFrame
-csv_file_path = '/content/drive/MyDrive/output/Smart_Watch_Review.csv'
+# Read CSV file into a DataFrame
+csv_file_path = "/content/drive/MyDrive/output/Smart_Watch_Review.csv"  # Replace with the path to your CSV file
 df = pd.read_csv(csv_file_path)
 
-# Create a new text file and write the content to it
-txt_file_path = '/content/drive/MyDrive/output/output_file.txt'
-df.to_csv(txt_file_path, sep='\t', index=False)
+try:
+    # Read CSV file into a DataFrame
+    df = pd.read_csv(csv_file_path)
+ 
 
-print(f'Text file created at: {txt_file_path}')
+    # Convert DataFrame to a list of dictionaries, with 'Review' and 'Rating' as variables
+    data_list = df.to_dict(orient='records')
+
+    # Specify the output JSON file path
+    output_json_file_path = "output.json"
+
+    # Write the list of dictionaries to the output JSON file
+    with open(output_json_file_path, 'w') as json_file:
+        json.dump(data_list, json_file, indent=2)
+
+    print(f"JSON data has been written to: {output_json_file_path}")
+
+except Exception as e:
+    print(f"Error: {e}")
