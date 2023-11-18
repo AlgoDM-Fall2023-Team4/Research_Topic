@@ -61,12 +61,21 @@ db_chain = SQLDatabaseChain.from_llm(llm,
                                      verbose=True,
                                      prompt=custom_prompt,
                                      return_intermediate_steps=True)
-
+st.title('Relational Querying')
 input = st.text_input('Enter your question here!')
 
 if input:
     result = db_chain(input)
-    st.write(result)
+    st.write("Answer: " + result['result'])
+
+positive, negative, neutral = (437, 529, 30)
+
+data = {'Positive': positive, 'Neutral': neutral, 'Negative': negative}
+
+st.title('Sentiment Analysis Results')
+st.bar_chart(data)
+
+
 
 
 from wordcloud import WordCloud
@@ -81,22 +90,20 @@ def generate_word_cloud(text, title):
 
 query = f"SELECT * FROM `{project_id}.{dataset_id}.{table_id}`"
 
-# Execute the query and fetch the results into a DataFrame
 df = bq_client.query(query).to_dataframe()
 
 
-# Streamlit App
 st.title("Review Word Cloud Generator")
 
 df['liked'] = df['liked'].astype(str)
 df['disliked'] = df['disliked'].astype(str)
 
-# Generate word cloud for liked reviews
 liked_text = ' '.join(df['liked'])
+st.title(":green[Liked]")
 generate_word_cloud(liked_text, 'Liked Word Cloud')
 
-# Generate word cloud for disliked reviews
 disliked_text = ''.join(df['disliked'])
+st.title(":red[Disliked]")
 generate_word_cloud(disliked_text, 'Disliked Word Cloud')
 
 
