@@ -3,7 +3,7 @@
 > <br>
 
 > [Codelab Slides](https://codelabs-preview.appspot.com/?file_id=1TWjEP4HKeSULhUcZNYtNWZL0MBYXNhQ9pAz7lLkkSRY/edit#0) <br>
-> [Application Demo/Presentation]() <br>
+ 
 
 ## Index
   - [Objective](#objective)
