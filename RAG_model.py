@@ -74,3 +74,24 @@ combined_reviews_file_path = "combined_reviews_with_ratings.txt"
 with open(combined_reviews_file_path, 'w') as file:
     file.write(combined_reviews)
 
+
+# Initialize the language model
+llm = VertexAI(temperature=0.7)  # Adjust temperature as needed
+
+# Load the input document
+loader = TextLoader(combined_reviews_file_path)
+documents = loader.load()
+
+# # Splitting
+# text_splitter = CharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
+# texts = text_splitter.split_documents(documents)
+# print(f'The input document has been split into {len(texts)} chunks\n')
+
+#
+# Splitting
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=2000,chunk_overlap=0, separators=["Rating"])
+texts = text_splitter.split_documents(documents)
+print(f'The input document has been split into {len(texts)} chunks\n')
+print(texts[0])
+
+
