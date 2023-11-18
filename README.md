@@ -2,8 +2,8 @@
 ----- 
 > <br>
 
-> [Codelab Slides] <br>
-> [Application Demo/Presentation]
+> [Codelab Slides]() <br>
+> [Application Demo/Presentation]() <br>
 
 ## Index
   - [Objective](#objective)
