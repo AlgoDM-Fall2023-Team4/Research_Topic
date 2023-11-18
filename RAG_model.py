@@ -54,3 +54,23 @@ try:
 
 except Exception as e:
     print(f"Error: {e}")
+
+##Question Answering Using MapReduce
+# Load data from JSON file
+json_file_path = "output.json"  # Replace with the path to your JSON file
+with open(json_file_path, 'r') as json_file:
+    data = json.load(json_file)
+
+# Create a DataFrame from the JSON data
+df = pd.DataFrame(data)
+print(df.head())
+
+
+# Combine reviews and ratings into a single text document
+combined_reviews = '\n'.join(f"Rating: {rating}\nReview: {review}" for rating, review in zip(df['Rating'], df['Review']))
+
+# Create a text file with the combined reviews and ratings
+combined_reviews_file_path = "combined_reviews_with_ratings.txt"
+with open(combined_reviews_file_path, 'w') as file:
+    file.write(combined_reviews)
+
