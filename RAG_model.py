@@ -94,4 +94,34 @@ texts = text_splitter.split_documents(documents)
 print(f'The input document has been split into {len(texts)} chunks\n')
 print(texts[0])
 
+# Question templates
+question_prompt = """
+Use the following portion of a long document to see if any of the text is relevant to answer the question.
+Return bullet points that help to answer the question.
+
+{context}
+
+Question: {question}
+Bullet points:
+"""
+question_prompt_template = PromptTemplate(template=question_prompt, input_variables=["context", "question"])
+
+combine_prompt = """
+Given the following bullet points extracted from a long document and a question, create a final answer.
+Question: {question}
+
+=========
+{summaries}
+=========
+
+Final answer:
+"""
+combine_prompt_template = PromptTemplate(template=combine_prompt, input_variables=["summaries", "question"])
+
+# Initialize QA chain
+qa_chain = load_qa_chain(llm=llm,
+                         chain_type='map_reduce',
+                         question_prompt=question_prompt_template,
+                         combine_prompt=combine_prompt_template,
+                         verbose=False)
 
