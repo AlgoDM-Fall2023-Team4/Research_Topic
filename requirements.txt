@@ -95,3 +95,8 @@ validators==0.22.0
 wordcloud==1.9.2
 yarl==1.9.2
 zipp==3.17.0
+tfx
+google-cloud-aiplatform
+langchain
+chromadb
+google-cloud-aiplatform "shapely<2"
