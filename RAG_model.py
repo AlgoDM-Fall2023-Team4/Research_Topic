@@ -125,3 +125,42 @@ qa_chain = load_qa_chain(llm=llm,
                          combine_prompt=combine_prompt_template,
                          verbose=False)
 
+###Question 1
+# Specify the question to be applied to all reviews
+question = "How many customers gave a 5-star rating to the smartwatch?"
+
+# Run the QA chain with the combined reviews and ratings
+response = qa_chain({"input_documents": texts, "question": question})
+
+# Print or store the result as needed
+print(response['output_text'])
+
+###Question 2
+# Specify the question to be applied to all reviews
+question = "Were there any glass break reported?"
+
+# Run the QA chain with the combined reviews and ratings
+response = qa_chain({"input_documents": texts, "question": question})
+
+# Print or store the result as needed
+print(response['output_text'])
+
+###Question 3
+# Specify the question to be applied to all reviews
+question = "Halo 1 was mentioned in any of the reviews?"
+
+# Run the QA chain with the combined reviews and ratings
+response = qa_chain({"input_documents": texts, "question": question})
+
+# Print or store the result as needed
+print(response['output_text'])
+
+###Question 4
+# Specify the question to be applied to all reviews
+question = "How many reviews were in positive?"
+
+# Run the QA chain with the combined reviews and ratings
+response = qa_chain({"input_documents": texts, "question": question})
+
+# Print or store the result as needed
+print(response['output_text'])
